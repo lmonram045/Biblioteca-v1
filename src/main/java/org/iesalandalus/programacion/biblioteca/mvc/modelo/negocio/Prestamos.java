@@ -196,7 +196,7 @@ public class Prestamos {
 
 		int indice = coleccionPrestamos.indexOf(prestamo);
 		prestamo = (indice == -1) ? null : new Prestamo(coleccionPrestamos.get(indice));
-		
+
 		return prestamo;
 	}
 

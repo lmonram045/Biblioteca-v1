@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.biblioteca.mvc.controlador;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -75,27 +76,27 @@ public class Controlador {
 		modelo.borrar(prestamo);
 	}
 	
-	public Alumno[] getAlumnos() {
+	public List<Alumno> getAlumnos() {
 		return modelo.getAlumnos();
 	}
 	
-	public Libro[] getLibros() {
+	public List<Libro> getLibros() {
 		return modelo.getLibros();
 	}
 	
-	public Prestamo[] getPrestamos() {
+	public List<Prestamo> getPrestamos() {
 		return modelo.getPrestamos();
 	}
 	
-	public Prestamo[] getPrestamos(Alumno alumno) {
+	public List<Prestamo> getPrestamos(Alumno alumno) {
 		return modelo.getPrestamos(alumno);
 	}
 	
-	public Prestamo[] getPrestamos(Libro libro) {
+	public List<Prestamo> getPrestamos(Libro libro) {
 		return modelo.getPrestamos(libro);
 	}
 	
-	public Prestamo[] getPrestamos(LocalDate fecha) {
+	public List<Prestamo> getPrestamos(LocalDate fecha) {
 		return modelo.getPrestamos(fecha);
 	}
 

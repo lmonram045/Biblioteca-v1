@@ -9,14 +9,14 @@ public class Libro {
 	private String autor;
 	private int numPaginas;
 
-	// Constructor con parámetros
+	/** Constructor con parámetros */
 	public Libro(String titulo, String autor, int numPaginas) {
 		setTitulo(titulo);
 		setAutor(autor);
 		setNumPaginas(numPaginas);
 	}
 
-	// Constructor copia
+	/** Constructor copia */
 	public Libro(Libro libro) {
 		if (libro == null) {
 			throw new NullPointerException("ERROR: No es posible copiar un libro nulo.");
@@ -26,12 +26,12 @@ public class Libro {
 		setNumPaginas(libro.getNumPaginas());
 	}
 
-	// Método para devolver un libro ficticio
+	/** Método para devolver un libro ficticio */
 	public static Libro getLibroFicticio(String titulo, String autor) {
 		return new Libro(titulo, autor, 1527);
 	}
 
-	// Método para obtener los puntos obtenidos por libro
+	/** Método para obtener los puntos obtenidos por libro */
 	public float getPuntos() {
 		return ((numPaginas / PAGINAS_PARA_RECOMPENSA) + 1) * PUNTOS_PREMIO;
 	}

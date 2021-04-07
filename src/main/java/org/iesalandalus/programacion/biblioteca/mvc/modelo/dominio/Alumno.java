@@ -14,14 +14,14 @@ public class Alumno {
 	private String correo;
 	private Curso curso;
 
-	// Constructor con parámetros.
+	/** Constructor con parámetros de la clase Alumno. */
 	public Alumno(String nombre, String correo, Curso curso) {
 		setNombre(nombre);
 		setCorreo(correo);
 		setCurso(curso);
 	}
 
-	// Constructor copia
+	/** Constructor copia de la clase alumno */
 	public Alumno(Alumno alumno) {
 		if (alumno == null) {
 			throw new NullPointerException("ERROR: No es posible copiar un alumno nulo.");
@@ -32,7 +32,13 @@ public class Alumno {
 		setCurso(alumno.getCurso());
 	}
 
-	// Método para formatear nombre
+	/** Método para devolver un alumno ficticio con nombre y curso válido y correo
+	* pasado por parámetro. */
+	public static Alumno getAlumnoFicticio(String correo) {
+		return new Alumno("Waldo Geraldo Faldo", correo, Curso.TERCERO);
+	}
+
+	/** Método para formatear nombre */
 	private String formateaNombre(String nombre) {
 		// primero quito espacios al principio y al final
 		nombre = nombre.trim();
@@ -57,7 +63,7 @@ public class Alumno {
 
 	}
 
-	// Método para devolver las iniciales de un nombre
+	/** Método para devolver las iniciales de un nombre */
 	private String getIniciales() {
 		// Creo variable para guardar iniciales
 		String iniciales = "";
@@ -72,18 +78,11 @@ public class Alumno {
 		return iniciales;
 	}
 
-	// Método para devolver un alumno ficticio con nombre y curso válido y correo
-	// pasado por parámetro.
-	public static Alumno getAlumnoFicticio(String correo) {
-		return new Alumno("Waldo Geraldo Faldo", correo, Curso.TERCERO);
-	}
-
 	// --------------Inicio de getters y setters---------------------------------
 	public Curso getCurso() {
 		return curso;
 	}
 
-	// Comprueba que el curso no es nulo.
 	public void setCurso(Curso curso) {
 		if (curso == null) {
 			throw new NullPointerException("ERROR: El curso no puede ser nulo.");
@@ -100,7 +99,6 @@ public class Alumno {
 		return correo;
 	}
 
-	// Comprueba que el nombre no sea nulo y que coincida con la expresión regular
 	private void setNombre(String nombre) {
 		if (nombre == null) {
 			throw new NullPointerException("ERROR: El nombre no puede ser nulo.");

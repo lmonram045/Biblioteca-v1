@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.biblioteca.mvc.modelo;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -12,8 +13,6 @@ import org.iesalandalus.programacion.biblioteca.mvc.modelo.negocio.Libros;
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.negocio.Prestamos;
 
 public class Modelo {
-	// Declaración de constantes y variables
-	private static final int CAPACIDAD = 30;
 
 	private Alumnos alumnos;
 	private Prestamos prestamos;
@@ -21,9 +20,9 @@ public class Modelo {
 
 	/** Constructor por defecto */
 	public Modelo() {
-		alumnos = new Alumnos(CAPACIDAD);
-		prestamos = new Prestamos(CAPACIDAD);
-		libros = new Libros(CAPACIDAD);
+		alumnos = new Alumnos();
+		prestamos = new Prestamos();
+		libros = new Libros();
 	}
 
 	/** Método para insertar un alumno */
@@ -89,32 +88,32 @@ public class Modelo {
 	}
 	
 	/** Método para obtener una copia profunda de los alumnos */
-	public Alumno[] getAlumnos() {
+	public List<Alumno> getAlumnos() {
 		return alumnos.get();
 	}
 	
 	/** Método para obtener una copia profunda de los libros */
-	public Libro[] getLibros() {
+	public List<Libro> getLibros() {
 		return libros.get();
 	}
 	
 	/** Método para obtener una copia profunda de los préstamos */
-	public Prestamo[] getPrestamos() {
+	public List<Prestamo> getPrestamos() {
 		return prestamos.get();
 	}
 	
 	/** Método para obtener una copia profunda de los préstamos de un alumno */
-	public Prestamo[] getPrestamos(Alumno alumno) {
+	public List<Prestamo> getPrestamos(Alumno alumno) {
 		return prestamos.get(alumno);
 	}
 	
 	/** Método para obtener una copia profunda de los préstamos de un libro */
-	public Prestamo[] getPrestamos(Libro libro) {
+	public List<Prestamo> getPrestamos(Libro libro) {
 		return prestamos.get(libro);
 	}
 	
 	/** Método para obtener una copia profunda de los préstamos realizados en una fecha concreta */
-	public Prestamo[] getPrestamos(LocalDate fecha) {
+	public List<Prestamo> getPrestamos(LocalDate fecha) {
 		return prestamos.get(fecha);
 	}
 }

@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.biblioteca.mvc.vista;
 
+import java.util.List;
+
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.biblioteca.mvc.controlador.Controlador;
@@ -78,9 +80,10 @@ public class Vista {
 	public void listarAlumnos() {
 		Consola.mostrarCabecera("Lista de alumnos");
 
-		Alumno[] alumnos = controlador.getAlumnos();
-
-		if (alumnos[0] == null) {
+		// Alumno[] alumnos = controlador.getAlumnos();
+		List<Alumno> alumnos = controlador.getAlumnos();
+		
+		if (alumnos.isEmpty()) {
 			System.out.println("No se encontraron alumnos");
 		} else {
 			for (Alumno alumno : alumnos) {
@@ -129,9 +132,9 @@ public class Vista {
 	public void listarLibros() {
 		Consola.mostrarCabecera("Lista de libros");
 
-		Libro[] libros = controlador.getLibros();
+		List<Libro> libros = controlador.getLibros();
 
-		if (libros[0] == null)
+		if (libros.isEmpty())
 			System.out.println("No se encontraron libros");
 		else {
 			for (Libro libro : libros) {
@@ -190,8 +193,8 @@ public class Vista {
 	public void listarPrestamos() {
 		Consola.mostrarCabecera("Lista de préstamos");
 
-		Prestamo[] prestamos = controlador.getPrestamos();
-		if (prestamos[0] == null) {
+		List<Prestamo> prestamos = controlador.getPrestamos();
+		if (prestamos.isEmpty()) {
 			System.out.println("No se encontraron préstamos.");
 		} else {
 			for (Prestamo prestamo : prestamos) {
@@ -206,8 +209,8 @@ public class Vista {
 		Consola.mostrarCabecera("Lista de préstamos de un alumno");
 
 		try {
-			Prestamo[] prestamosAlumno = controlador.getPrestamos(Consola.leerAlumnoFicticio());
-			if (prestamosAlumno[0] == null) {
+			List<Prestamo> prestamosAlumno = controlador.getPrestamos(Consola.leerAlumnoFicticio());
+			if (prestamosAlumno.isEmpty()) {
 				System.out.println("No se encontraron préstamos para este alumno");
 			} else {
 				for (Prestamo prestamo : prestamosAlumno) {
@@ -224,8 +227,8 @@ public class Vista {
 		Consola.mostrarCabecera("Lista de préstamos realizados de un libro");
 
 		try {
-			Prestamo[] prestamosLibro = controlador.getPrestamos(Consola.leerLibroFicticio());
-			if (prestamosLibro[0] == null) {
+			List<Prestamo> prestamosLibro = controlador.getPrestamos(Consola.leerLibroFicticio());
+			if (prestamosLibro.isEmpty()) {
 				System.out.println("No se encontraron préstamos realizados de este libro.");
 			} else {
 				for (Prestamo prestamo : prestamosLibro) {
@@ -242,9 +245,9 @@ public class Vista {
 		Consola.mostrarCabecera("Lista de préstamos realizados en una fecha");
 
 		try {
-			Prestamo[] prestamosFecha = controlador
+			List<Prestamo> prestamosFecha = controlador
 					.getPrestamos(Consola.leerFecha("Introduzca la fecha de el préstamo "));
-			if (prestamosFecha[0] == null) {
+			if (prestamosFecha.isEmpty()) {
 				System.out.println("No se encontraron préstamos en esta fecha");
 			} else {
 				for (Prestamo prestamo : prestamosFecha) {

@@ -15,14 +15,14 @@ public class Prestamo {
 	private Alumno alumno;
 	private Libro libro;
 
-	// Constructor con parámetros
+	/** Constructor con parámetros */
 	public Prestamo(Alumno alumno, Libro libro, LocalDate fechaPrestamo) {
 		setAlumno(alumno);
 		setLibro(libro);
 		setFechaPrestamo(fechaPrestamo);
 	}
 
-	// Constructor copia
+	/** Constructor copia */
 	public Prestamo(Prestamo prestamo) {
 		if (prestamo == null) {
 			throw new NullPointerException("ERROR: No es posible copiar un préstamo nulo.");
@@ -37,7 +37,7 @@ public class Prestamo {
 		}
 	}
 
-	// Método para obtener un prestamo ficticio
+	/** Método para obtener un prestamo ficticio */
 	public static Prestamo getPrestamoFicticio(Alumno alumno, Libro libro) {
 		if (alumno == null) {
 			throw new NullPointerException("ERROR: El alumno no puede ser nulo.");
@@ -49,13 +49,13 @@ public class Prestamo {
 		return new Prestamo(alumno, libro, LocalDate.now());
 	}
 
-	// Método para devolver un libro
+	/** Método para devolver un libro */
 	public void devolver(LocalDate fecha) {
 
 		setFechaDevolucion(fecha);
 	}
 
-	// Método para obtener los punto de el préstamo
+	/** Método para obtener los puntos de el préstamo */
 	public int getPuntos() {
 		if (getFechaDevolucion() == null) {
 			return 0;
