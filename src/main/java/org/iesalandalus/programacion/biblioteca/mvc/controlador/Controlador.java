@@ -2,11 +2,13 @@ package org.iesalandalus.programacion.biblioteca.mvc.controlador;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.Modelo;
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Alumno;
+import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Curso;
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Libro;
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Prestamo;
 import org.iesalandalus.programacion.biblioteca.mvc.vista.Vista;
@@ -98,6 +100,10 @@ public class Controlador {
 	
 	public List<Prestamo> getPrestamos(LocalDate fecha) {
 		return modelo.getPrestamos(fecha);
+	}
+	
+	public Map<Curso, Integer> getEstadisticaMensualPorCurso(LocalDate mes) {
+		return modelo.getEstadisticaMensualPorCurso(mes);
 	}
 
 }

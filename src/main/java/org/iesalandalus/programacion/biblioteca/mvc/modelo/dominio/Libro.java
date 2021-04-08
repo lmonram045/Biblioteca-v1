@@ -2,8 +2,8 @@ package org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio;
 
 public class Libro {
 	// Constantes de la clase
-	static final int PAGINAS_PARA_RECOMPENSA = 25;
-	static final float PUNTOS_PREMIO = 0.5f;
+	private static final int PAGINAS_PARA_RECOMPENSA = 25;
+	private static final float PUNTOS_PREMIO = 0.5f;
 	// Variables de la clase
 	private String titulo;
 	private String autor;
@@ -30,25 +30,11 @@ public class Libro {
 	public static Libro getLibroFicticio(String titulo, String autor) {
 		return new Libro(titulo, autor, 1527);
 	}
-
-	/** Método para obtener los puntos obtenidos por libro */
-	public float getPuntos() {
-		return ((numPaginas / PAGINAS_PARA_RECOMPENSA) + 1) * PUNTOS_PREMIO;
-	}
-
-	// -------------------------- Inicio getters y setters ----------------------
+	
 	public String getTitulo() {
 		return titulo;
 	}
-
-	public String getAutor() {
-		return autor;
-	}
-
-	public int getNumPaginas() {
-		return numPaginas;
-	}
-
+	
 	private void setTitulo(String titulo) {
 		// Comprueba que no sea nulo el nombre
 		if (titulo == null) {
@@ -60,7 +46,11 @@ public class Libro {
 		}
 		this.titulo = titulo;
 	}
-
+	
+	public String getAutor() {
+		return autor;
+	}
+	
 	private void setAutor(String autor) {
 		// Comprobamos que el autor no sea nulo
 		if (autor == null) {
@@ -72,14 +62,22 @@ public class Libro {
 		}
 		this.autor = autor;
 	}
-
+	
+	public int getNumPaginas() {
+		return numPaginas;
+	}
+	
 	private void setNumPaginas(int numPaginas) {
 		if (numPaginas < 1) {
 			throw new IllegalArgumentException("ERROR: El número de páginas debe ser mayor que cero.");
 		}
 		this.numPaginas = numPaginas;
 	}
-	// ----------------------------Fin getters y setters ---------------------------
+
+	/** Método para obtener los puntos obtenidos por libro */
+	public float getPuntos() {
+		return ((numPaginas / PAGINAS_PARA_RECOMPENSA) + 1) * PUNTOS_PREMIO;
+	}
 
 	@Override
 	public int hashCode() {

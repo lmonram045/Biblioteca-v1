@@ -1,11 +1,13 @@
 package org.iesalandalus.programacion.biblioteca.mvc.vista;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.biblioteca.mvc.controlador.Controlador;
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Alumno;
+import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Curso;
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Libro;
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Prestamo;
 
@@ -254,6 +256,24 @@ public class Vista {
 					if (prestamo != null)
 						System.out.println(prestamo);
 				}
+			}
+		} catch (NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void mostrarEstadisticaMensualPorCurso() {
+		Consola.mostrarCabecera("Estadísticas mensuales por curso");
+		
+		try {
+			Map<Curso, Integer> estadisticasMensuales = controlador.getEstadisticaMensualPorCurso(Consola.leerFecha("Introduzca la fecha sobre la que quiere realizar la consulta "));
+			
+			if (estadisticasMensuales.isEmpty()) {
+				System.out.println("No se encontraron préstamos en esta fecha");
+			} else {
+				//for (Map<Curso,Integer> auxiliarEstadisticas : estadisticasMensuales) {
+				System.out.println(estadisticasMensuales);
+				//}
 			}
 		} catch (NullPointerException | IllegalArgumentException e) {
 			System.out.println(e.getMessage());

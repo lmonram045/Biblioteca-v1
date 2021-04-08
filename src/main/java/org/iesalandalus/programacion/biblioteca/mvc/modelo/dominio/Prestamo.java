@@ -71,24 +71,33 @@ public class Prestamo {
 		// pasados
 		return Math.round(libro.getPuntos() / ChronoUnit.DAYS.between(getFechaPrestamo(), getFechaDevolucion()));
 	}
-
-	// ------------------Inicio de getters y setters---------------------------
-	public LocalDate getFechaPrestamo() {
-		return fechaPrestamo;
-	}
-
-	public LocalDate getFechaDevolucion() {
-		return fechaDevolucion;
-	}
-
+	
 	public Alumno getAlumno() {
 		return new Alumno(alumno);
 	}
-
+	
+	private void setAlumno(Alumno alumno) {
+		if (alumno == null) {
+			throw new NullPointerException("ERROR: El alumno no puede ser nulo.");
+		}
+		this.alumno = alumno;
+	}
+	
 	public Libro getLibro() {
 		return new Libro(libro);
 	}
+	
+	private void setLibro(Libro libro) {
+		if (libro == null) {
+			throw new NullPointerException("ERROR: El libro no puede ser nulo.");
+		}
+		this.libro = libro;
+	}
 
+	public LocalDate getFechaPrestamo() {
+		return fechaPrestamo;
+	}
+	
 	private void setFechaPrestamo(LocalDate fechaPrestamo) {
 		if (fechaPrestamo == null) {
 			throw new NullPointerException("ERROR: La fecha de préstamo no puede ser nula.");
@@ -98,6 +107,10 @@ public class Prestamo {
 		}
 	
 		this.fechaPrestamo = fechaPrestamo;
+	}
+
+	public LocalDate getFechaDevolucion() {
+		return fechaDevolucion;
 	}
 
 	private void setFechaDevolucion(LocalDate fechaDevolucion) {
@@ -118,21 +131,6 @@ public class Prestamo {
 		
 		this.fechaDevolucion = fechaDevolucion;
 	}
-
-	private void setAlumno(Alumno alumno) {
-		if (alumno == null) {
-			throw new NullPointerException("ERROR: El alumno no puede ser nulo.");
-		}
-		this.alumno = alumno;
-	}
-
-	private void setLibro(Libro libro) {
-		if (libro == null) {
-			throw new NullPointerException("ERROR: El libro no puede ser nulo.");
-		}
-		this.libro = libro;
-	}
-	// -------------------Fin de getters y setters-----------------------------
 
 	@Override
 	public int hashCode() {

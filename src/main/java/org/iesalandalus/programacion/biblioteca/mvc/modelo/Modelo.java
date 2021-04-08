@@ -2,10 +2,12 @@ package org.iesalandalus.programacion.biblioteca.mvc.modelo;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Alumno;
+import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Curso;
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Libro;
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio.Prestamo;
 import org.iesalandalus.programacion.biblioteca.mvc.modelo.negocio.Alumnos;
@@ -115,5 +117,10 @@ public class Modelo {
 	/** Método para obtener una copia profunda de los préstamos realizados en una fecha concreta */
 	public List<Prestamo> getPrestamos(LocalDate fecha) {
 		return prestamos.get(fecha);
+	}
+	
+	/** Método para obtener una copia profunda de los préstamos realizados en un mes ordenados por curso */
+	public Map<Curso, Integer> getEstadisticaMensualPorCurso(LocalDate mes) {
+		return prestamos.getEstadisticaMensualPorCurso(mes);
 	}
 }

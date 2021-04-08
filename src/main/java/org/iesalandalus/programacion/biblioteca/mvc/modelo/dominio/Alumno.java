@@ -5,9 +5,9 @@ import java.util.regex.Pattern;
 
 public class Alumno {
 	// Constantes para almacenar las expresiones regulares de nombre y correo
-	static final String ER_NOMBRE = "[a-zA-ZÁÉÍÓÚáéíóúÑñ]+[\\s]+[a-zA-ZÁÉÍÓÚáéíóúÑñ\\s]*";
+	private static final String ER_NOMBRE = "[a-zA-ZÁÉÍÓÚáéíóúÑñ]+[\\s]+[a-zA-ZÁÉÍÓÚáéíóúÑñ\\s]*";
 
-	static final String ER_CORREO = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}";
+	private static final String ER_CORREO = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}";
 
 	// Variables para nombre, correo y curso
 	private String nombre;
@@ -37,6 +37,22 @@ public class Alumno {
 	public static Alumno getAlumnoFicticio(String correo) {
 		return new Alumno("Waldo Geraldo Faldo", correo, Curso.TERCERO);
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	private void setNombre(String nombre) {
+		if (nombre == null) {
+			throw new NullPointerException("ERROR: El nombre no puede ser nulo.");
+		}
+
+		if (nombre.trim().length() == 0 || !nombre.matches(ER_NOMBRE)) {
+			throw new IllegalArgumentException("ERROR: El nombre no tiene un formato válido.");
+		}
+
+		this.nombre = formateaNombre(nombre);
+	}
 
 	/** Método para formatear nombre */
 	private String formateaNombre(String nombre) {
@@ -62,56 +78,11 @@ public class Alumno {
 		return nombre.trim();
 
 	}
-
-	/** Método para devolver las iniciales de un nombre */
-	private String getIniciales() {
-		// Creo variable para guardar iniciales
-		String iniciales = "";
-		// pongo el nombre en formato correcto
-		String nombreFormateado = formateaNombre(nombre);
-		// Creo un array para dividir el nombre
-		String[] partesNombre = nombreFormateado.split(" ");
-		// Recorro el array para que vaya guardando las iniciales de el nombre.
-		for (String partes : partesNombre) {
-			iniciales += partes.substring(0, 1);
-		}
-		return iniciales;
-	}
-
-	// --------------Inicio de getters y setters---------------------------------
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		if (curso == null) {
-			throw new NullPointerException("ERROR: El curso no puede ser nulo.");
-		}
-
-		this.curso = curso;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
+	
 	public String getCorreo() {
 		return correo;
 	}
-
-	private void setNombre(String nombre) {
-		if (nombre == null) {
-			throw new NullPointerException("ERROR: El nombre no puede ser nulo.");
-		}
-
-		if (nombre.trim().length() == 0 || !nombre.matches(ER_NOMBRE)) {
-			throw new IllegalArgumentException("ERROR: El nombre no tiene un formato válido.");
-		}
-
-		this.nombre = formateaNombre(nombre);
-	}
-
-	// Comprueba que el correo no sea nulo y que coincida con la expresión regular
+	
 	private void setCorreo(String correo) {
 		if (correo == null) {
 			throw new NullPointerException("ERROR: El correo no puede ser nulo.");
@@ -129,7 +100,33 @@ public class Alumno {
 
 		this.correo = correo;
 	}
-	// ------------------Fin de getters y setters----------------------------------
+
+	/** Método para devolver las iniciales de un nombre */
+	private String getIniciales() {
+		// Creo variable para guardar iniciales
+		String iniciales = "";
+		// pongo el nombre en formato correcto
+		String nombreFormateado = formateaNombre(nombre);
+		// Creo un array para dividir el nombre
+		String[] partesNombre = nombreFormateado.split(" ");
+		// Recorro el array para que vaya guardando las iniciales de el nombre.
+		for (String partes : partesNombre) {
+			iniciales += partes.substring(0, 1);
+		}
+		return iniciales;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		if (curso == null) {
+			throw new NullPointerException("ERROR: El curso no puede ser nulo.");
+		}
+
+		this.curso = curso;
+	}
 
 	@Override
 	public int hashCode() {
