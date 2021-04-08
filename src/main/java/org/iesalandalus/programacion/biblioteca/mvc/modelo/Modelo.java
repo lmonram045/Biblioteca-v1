@@ -76,11 +76,23 @@ public class Modelo {
 	
 	/** Método para borrar un alumno */
 	public void borrar(Alumno alumno) throws OperationNotSupportedException {
+		// Para cada préstamo de este alumno, borrarlo.
+		List<Prestamo> prestamosAlumno = prestamos.get(alumno);
+		for (Prestamo prestamo : prestamosAlumno)
+			prestamos.borrar(prestamo);
+		
+		// Una vez borrados los préstamos de ese alumno, borrar el alumno.
 		alumnos.borrar(alumno);
 	}
 	
 	/** Método para borrar un libro */
 	public void borrar(Libro libro) throws OperationNotSupportedException {
+		// Para cada préstamo de este libro, borrarlo.
+		List<Prestamo> prestamosLibro = prestamos.get(libro);
+		for (Prestamo prestamo : prestamosLibro)
+			prestamos.borrar(prestamo);
+		
+		// Una vez borrados los préstamos, borrar libro
 		libros.borrar(libro);
 	}
 	
